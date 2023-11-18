@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -29,10 +31,21 @@ class ProductRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->andWhere('LOWER(p.title) LIKE LOWER(:search) OR LOWER(p.shortDescription) LIKE LOWER(:search)')
             ->setParameter('search', "%$search%")
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function getPricesSumInCents(): int
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb->select('SUM(p.priceInCents)')
+        ;
+
+        return $qb->getQuery()->getSingleScalarResult();
     }
 }

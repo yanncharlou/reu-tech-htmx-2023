@@ -8,7 +8,7 @@
     <div class="card-body">
         <h5 class="card-title">{{ product.title }}</h5>
         <p class="card-text">{{ product.shortDescription }}</p>
-        <p class="">{{ (product.priceInCents/100) | format_currency('EUR') }}</p>
+        <p class="text-primary">{{ (product.priceInCents/100) | format_currency('EUR') }}</p>
         <div class="text-end">
             <a class="btn btn-primary"
                hx-get="{{ path('app_dashboard_edit',{'id':product.id }) }}"

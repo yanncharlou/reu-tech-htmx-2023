@@ -1,0 +1,5 @@
+<div id="navbar_price_sum" hx-swap-oob="true">
+    {% if price_sum is defined %}
+            <span class="badge bg-info" style="font-size: x-large">{{ (price_sum/100) | format_currency('EUR') }} pour tout goûter</span>
+    {% endif %}
+</div>

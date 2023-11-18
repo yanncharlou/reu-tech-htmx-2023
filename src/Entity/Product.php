@@ -25,7 +25,7 @@ class Product
     private ?string $imagePath = null;
 
     #[ORM\Column]
-    #[Assert\GreaterThanOrEqual(1000,message: 'Tu te crois chez Kronembourg ou quoi ?')]
+    #[Assert\GreaterThanOrEqual(1000,message: 'Tu te crois chez Kronenbourg ou quoi ?')]
     private ?int $priceInCents = null;
 
     public function getId(): ?int

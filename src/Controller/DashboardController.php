@@ -20,6 +20,7 @@ class DashboardController extends AbstractController
     {
         return $this->render('dashboard/index.html.twig', [
             'products' => $productRepository->findAll(),
+            'price_sum' => $productRepository->getPricesSumInCents(),
         ]);
     }
 
@@ -36,7 +37,12 @@ class DashboardController extends AbstractController
     }
 
     #[Route('/htmx/edit/{id}', name: 'app_dashboard_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Product $product, EntityManagerInterface $entityManager): Response
+    public function edit(
+        Request $request,
+        Product $product,
+        EntityManagerInterface $entityManager,
+        ProductRepository $productRepository,
+    ): Response
     {
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
@@ -47,6 +53,7 @@ class DashboardController extends AbstractController
             return $this->render('dashboard/htmx-responses/edit_done.html.twig', [
                 'product' => $product,
                 'form' => $form,
+                'price_sum' => $productRepository->getPricesSumInCents(),
             ]);
         }
 
