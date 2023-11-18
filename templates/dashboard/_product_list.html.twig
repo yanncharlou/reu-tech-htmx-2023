@@ -1,0 +1,5 @@
+<div id="products_list" class="row mt-3">
+    {% for product in products %}
+        {{ include('dashboard/_product_card.html.twig') }}
+    {% endfor %}
+</div>

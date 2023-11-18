@@ -1,0 +1,17 @@
+.htmx-on-request {
+  display:none;
+}
+.htmx-off-request {
+  display:block;
+}
+
+.htmx-request {
+  .htmx-on-request,
+  &.htmx-on-request {
+    display:block;
+  }
+  .htmx-off-request,
+  &.htmx-off-request {
+    display:none;
+  }
+}

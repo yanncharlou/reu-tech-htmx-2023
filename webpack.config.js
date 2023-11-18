@@ -53,6 +53,14 @@ Encore
         config.corejs = '3.23';
     })
 
+    .configureLoaderRule('fonts', loader => {
+        loader.test = /\.(woff|woff2|eot|ttf|otf)$/;
+        loader.type = 'asset/resource';
+        loader.generator = {
+            filename: 'fonts/[hash][ext]'
+        };
+    })
+
     // enables Sass/SCSS support
     .enableSassLoader()
 

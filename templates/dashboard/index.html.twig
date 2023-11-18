@@ -4,10 +4,22 @@
 
 {% block body %}
 
-    <div class="row mt-3">
-        {% for product in products %}
-            {{ include('dashboard/_product_card.html.twig') }}
-        {% endfor %}
-    </div>
-    <a href="{{ path('app_product_new') }}">Ajouter</a>
+    <form class="d-flex mt-3 align-content-center"
+          hx-get="{{ path('app_dashboard_search') }}"
+          hx-target="#products_list"
+          hx-indicator="#search_indicator"
+    >
+        <input name="search" class="form-control me-sm-2" type="search" placeholder="Search"
+               hx-trigger="keyup changed delay:500ms"
+               hx-get="{{ path('app_dashboard_search') }}"
+               hx-target="#products_list"
+        />
+        <button class="btn btn-secondary my-2 my-sm-0 d-flex align-items-center" type="submit">
+            <span id="search_indicator" class="spinner-border spinner-border-sm text-primary me-2 htmx-on-request" aria-hidden="true"></span>
+            <span>Search</span>
+        </button>
+    </form>
+
+    {{ include('dashboard/_product_list.html.twig') }}
+
 {% endblock %}
