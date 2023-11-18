@@ -1,0 +1,17 @@
+{% embed 'dashboard/_product_card_layout.html.twig' %}
+    {% block card_content %}
+
+        {# product \App\Entity\Product #}
+        <div class="m-3">
+            {{ form_start(form, {'attr':{
+                'hx-post': path('app_dashboard_edit',{'id': product.id}),
+                'hx-target': 'closest .product_item',
+                'hx-swap': 'outerHTML'
+            }}) }}
+                {{ form_widget(form) }}
+                <button class="btn btn-primary" type="submit">{{ button_label|default('Save') }}</button>
+            {{ form_end(form) }}
+        </div>
+
+    {% endblock %}
+{% endembed %}

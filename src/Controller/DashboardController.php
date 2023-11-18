@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
+use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,4 +35,24 @@ class DashboardController extends AbstractController
         ]);
     }
 
+    #[Route('/htmx/edit/{id}', name: 'app_dashboard_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Product $product, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->render('dashboard/htmx-responses/edit_done.html.twig', [
+                'product' => $product,
+                'form' => $form,
+            ]);
+        }
+
+        return $this->render('dashboard/htmx-responses/edit_form.html.twig', [
+            'product' => $product,
+            'form' => $form,
+        ]);
+    }
 }

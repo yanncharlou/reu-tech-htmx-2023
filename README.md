@@ -2,5 +2,5 @@
 
 ## Ressources
 
-https://htmx.org/
-https://bootswatch.com/materia/
+- https://htmx.org/
+- https://bootswatch.com/materia/
