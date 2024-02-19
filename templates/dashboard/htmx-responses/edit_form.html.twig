@@ -1,5 +1,6 @@
-{% embed 'dashboard/_product_card_layout.html.twig' %}
-    {% block card_content %}
+{# product \App\Entity\Product #}
+<div class="product_item col-md-6 col-lg-3 mb-4">
+    <div class="card">
 
         {# product \App\Entity\Product #}
         <div class="m-3">
@@ -12,6 +13,5 @@
                 <button class="btn btn-primary" type="submit">{{ button_label|default('Save') }}</button>
             {{ form_end(form) }}
         </div>
-
-    {% endblock %}
-{% endembed %}
+    </div>
+</div>

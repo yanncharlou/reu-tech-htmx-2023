@@ -1,20 +1,23 @@
-{% extends 'dashboard/_product_card_layout.html.twig' %}
+{# product \App\Entity\Product #}
+<div class="product_item col-md-6 col-lg-3 mb-4">
+    <div class="card">
 
-{% block card_content %}
-    {# product \App\Entity\Product #}
-    <div class="text-center">
-        <img src="{{ asset('catalog/products/' ~ product.imagePath) }}" class="card-img-top" style="max-height: 250px; width: auto" alt="">
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">{{ product.title }}</h5>
-        <p class="card-text">{{ product.shortDescription }}</p>
-        <p class="text-primary">{{ (product.priceInCents/100) | format_currency('EUR') }}</p>
-        <div class="text-end">
-            <a class="btn btn-primary"
-               hx-get="{{ path('app_dashboard_edit',{'id':product.id }) }}"
-               hx-target="closest .product_item"
-               hx-swap="outerHTML"
-            ><i class="icon-pencil"></i></a>
+        {# product \App\Entity\Product #}
+        <div class="text-center d-flex justify-content-around align-content-end" style="height: 250px;">
+            <img src="{{ asset('catalog/products/' ~ product.imagePath) }}" class="card-img-top" style="max-height: 250px; width: auto; max-width: 100%;" alt="">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ product.title }}</h5>
+            <p class="card-text">{{ product.shortDescription }}</p>
+            <p class="text-primary">{{ (product.priceInCents/100) | format_currency('EUR') }}</p>
+
+            <div class="text-end">
+                <a class="btn btn-primary"
+                   hx-get="{{ path('app_dashboard_edit',{'id':product.id }) }}"
+                   hx-target="closest .product_item"
+                   hx-swap="outerHTML"
+                ><i class="icon-pencil"></i></a>
+            </div>
         </div>
     </div>
-{% endblock %}
+</div>

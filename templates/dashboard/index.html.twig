@@ -4,6 +4,7 @@
 
 {% block body %}
 
+    {# search bar #}
     <form class="d-flex mt-3 align-content-center"
           hx-get="{{ path('app_dashboard_search') }}"
           hx-target="#products_list"
@@ -20,6 +21,7 @@
         </button>
     </form>
 
+    {# products #}
     {{ include('dashboard/_product_list.html.twig') }}
 
 {% endblock %}

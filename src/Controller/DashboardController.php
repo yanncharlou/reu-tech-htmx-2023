@@ -30,7 +30,7 @@ class DashboardController extends AbstractController
         Request $request,
     ): Response
     {
-        sleep(1);
+//        sleep(1);
         return $this->render('dashboard/htmx-responses/search.html.twig', [
             'products' => $productRepository->findByTextSearch($request->query->get('search')),
         ]);
